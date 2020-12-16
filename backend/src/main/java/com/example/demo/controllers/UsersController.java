@@ -32,10 +32,10 @@ public class UsersController {
     }
 
     //Get a user with a password and username combination
-//    @GetMapping("/findUserByLogin/{username}/{password}")
-//    public Object findByLogin(@PathVariable String username, @PathVariable String password){
-//        return myDAO.fetchByLogin(username,password);
-//    }
+    @GetMapping("/findUserByLogin/{username}/{password}")
+    public Object findByLogin(@PathVariable String username, @PathVariable String password){
+        return usersDAO.fetchByLogin(username,password);
+    }
 
     //This is a POST request to add a new user.
     //http://localhost:8080/addUser
