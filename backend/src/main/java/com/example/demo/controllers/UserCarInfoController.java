@@ -30,8 +30,6 @@ public class UserCarInfoController {
     //http://localhost:8080/addUserCarInfo
     @PostMapping("/addUserCarInfo")
     public UserCarInfo addUserCarInfo(@RequestBody UserCarInfo userCarInfo) {
-        userCarInfo.setId(0);
-
         userCarInfoDAO.save(userCarInfo);
         return userCarInfo;
     }
@@ -40,6 +38,9 @@ public class UserCarInfoController {
     //http://localhost:8080/updateUserCarInfo
     @PutMapping("/updateUserCarInfo")
     public UserCarInfo updateUserCarInfo(@RequestBody UserCarInfo updateUserCarInfo) {
+        UserCarInfo result = (UserCarInfo) userCarInfoDAO.fetchById(updateUserCarInfo.getId());
+        result.setBrand(updateUserCarInfo.getBrand());
+        result.setColor(updateUserCarInfo.getColor());
         //this will execute an update instead of a create
         userCarInfoDAO.save(updateUserCarInfo);
         return updateUserCarInfo;
