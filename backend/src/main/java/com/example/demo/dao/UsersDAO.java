@@ -8,7 +8,7 @@ import java.util.List;
 public interface UsersDAO {
     List<Users> fetchAll();
     Users fetchById(int theId);
-    Users fetchByLogin(String userName, String password);
+    Object fetchByLogin(String userName, String password);
     void save(Users users);
     void deleteById(int theId);
 }
