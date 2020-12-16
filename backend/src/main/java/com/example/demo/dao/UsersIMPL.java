@@ -36,6 +36,16 @@ public class UsersIMPL implements  UsersDAO {
     }
 
     @Override
+    @Transactional //fetch by login.
+    public Object fetchByLogin(String userName,String password) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        Query query = currentSession.createQuery("from Users where :name like user_name and :pwd like password");
+        query.setParameter("name",userName);
+        query.setParameter("pwd",password);
+        return query.getResultList();
+    }
+
+    @Override
     @Transactional
     public void save(Users users) {
         Session currentSession = entityManager.unwrap(Session.class);
