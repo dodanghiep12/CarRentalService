@@ -10,12 +10,12 @@ class CarStockDataService {
         return axios.delete(`http://localhost:8080/deleteCarStock/${id}`)
     }
 
-    updateFlashcardSet(cardSet) {
-        return axios.put(`http://localhost:8080/updateCarStock`, cardSet)
+    updateFlashcardSet(carstock) {
+        return axios.put(`http://localhost:8080/updateCarStock`, carstock)
     }
 
-    createFlashcardSet(cardSet) {
-        return axios.post(`http://localhost:8080/addCarStock`, cardSet)
+    createFlashcardSet(carstock) {
+        return axios.post(`http://localhost:8080/addCarStock`, carstock)
     }
 }
 

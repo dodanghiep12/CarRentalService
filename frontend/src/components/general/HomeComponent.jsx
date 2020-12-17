@@ -5,11 +5,11 @@ class HomeComponent extends Component {
     render() {
         return (
             <div className="container">
-                    <p>Are you ready to study Hard?</p>
-                    <p>Let's Go!!!</p>
+                    <p>A NEW WAY TO RENT</p>
+                    <p>Quality rental vehicles</p>
                     <br/>
                     <button className="bt first">
-                        <Link to="/SignIn">Click Me!</Link>
+                        <Link to="/SignIn">HERE</Link>
                     </button>                   
             </div>
         )

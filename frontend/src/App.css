@@ -8,13 +8,14 @@
 }
 
 .container {
+  margin-top: 15%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .App {
-  background-image: url(http://animeanthology.com/wp-content/uploads/2016/02/Yuu-Otosaka-x-Nao-Tomori-3.png);
+  background-image: url(https://www.turkishairlines.com/theme/img/figures/carrent-bg-2008-logolu.jpg);
   min-width: 100%;
   min-height: 100%;
   position: fixed;
@@ -37,7 +38,7 @@
 
 .base-container {
   box-shadow: 0px 0px 14px 0.3px #00000096;
-  background-color: rgb(255, 255, 255, .2);
+  background-color: rgb(255, 255, 255, 0.8);
   border-radius: 3em;
   width: 50%;
   margin-left: 25%;

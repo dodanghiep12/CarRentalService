@@ -1,139 +1,78 @@
-import React, { Component } from 'react';
-import FlashcardSetDataService from '../../services/FlashcardSetDataService';
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react'
+import { Formik, Form, Field } from 'formik'
+import CarStockDataService from '../../service/CarStockDataService'
 
-class FlashcardSetComponent extends Component {
+class EmployeeComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            flashcardSets: [],
-            id:this.props.location.state.id,
-            renderCards: false,
-            setID:0,
-            updatedName:""
-        }    
-
-        this.refreshFlashcardSetRegistry = this.refreshFlashcardRegistry.bind(this)
-        this.deleteFlashcardSetClicked = this.deleteFlashcardSetClicked.bind(this)
-        this.updateFlashcardSetClicked = this.updateFlashcardSetClicked.bind(this)
-        this.addFlashcardSetClicked = this.addFlashcardSetClicked.bind(this)
-        this.studyFlashcardSetClicked = this.studyFlashcardSetClicked.bind(this)
-    }
-
-    componentDidMount() {
-        this.refreshFlashcardSetRegistry();
-    }
-
-    refreshFlashcardRegistry() {
-        FlashcardSetDataService.retrieveAllFlashcardSets()
-            .then(
-                response => {
-                    this.setState({
-                        flashcardSets: response.data
-                    })
-                }
-            )
-    }
-
-    deleteFlashcardSetClicked(id) {
-        console.log("Delete Flashcard Set Clicked")
-        FlashcardSetDataService.deleteFlashcardSet(id)
-            .then(
-                response => {
-                    this.setState({ message: `Deleted Set: ${id}` })
-                    alert(this.state.message)
-                    this.refreshFlashcardSetRegistry();
-                }
-            )
-    }
-
-    updateFlashcardSetClicked(id) {
-
-    const enteredName = prompt('Rename set')
-    id.name = enteredName    
-    FlashcardSetDataService.updateFlashcardSet(id)
-    .then(
-        response =>{
-            this.setState({message: "udpated"})
-            alert(this.state.message)
-            this.refreshFlashcardSetRegistry();
+            id: this.props.match.params.id,
+            jobTitle: this.props.match.params.jobTitle,
+            firstName: '',
+            lastName: '',
+            email: ''
         }
-    )   
+        this.onSubmit = this.onSubmit.bind(this)
     }
 
-    addFlashcardSetClicked() {
-        let set = {
-            name: "",
-            userID: this.state.id
+    onSubmit(values) {
+        let employee = {
+            id: this.state.id,
+            jobTitle: values.jobTitle,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email
         }
 
-        set.name = prompt('Add a new set')  
-
-        FlashcardSetDataService.createFlashcardSet(set)
-        .then(
-            response =>{
-                this.setState({message: "add"})
-                alert(this.state.message)
-                this.refreshFlashcardSetRegistry();
-            }
-        )         
-    }
-
-    
-    studyFlashcardSetClicked(id) {
-        this.setState({
-            setID:id,
-            renderCards: true
-        })          
-
+            CarStockDataService.updateEmployee(employee)
+            .then(() => this.props.history.push('/EmployeeRegistry'))
     }
 
     render() {
-        if(this.state.renderCards){
-                //return <Redirect to={"/FlashcardSets"} />                  
-                return <Redirect
-                to={{
-                pathname: "/cardSet",
-                state: { id: this.state.setID }
-              }}
-            />           
-
-        }
-        return (
-            <div className="container">
-                <h1 style={{ textAlign: "center" }}>Flashcard Set Registry</h1><br></br>
-                <div className="jumbotron" style={{ backgroundColor: "gray", color: "white" }}>
-                    <table className="table">
-                        <thead>
-                            <tr style={{ textAlign: "center", color: "black" }}>
-                                <th>ID</th>
-                                <th>Flashcard Set</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {                              
-                                this.state.flashcardSets.filter(elements => elements.userID === this.state.id).map(
-                                    flashcardSets =>
-                                        <tr style={{ textAlign: "center" }} key={flashcardSets.id}>
-                                            <td>{flashcardSets.id}</td>
-                                            <td>{flashcardSets.name}</td>
-                                            <td><button className="btn btn-success" onClick={() => this.studyFlashcardSetClicked(flashcardSets)}>Study</button></td>
-                                            <td><button className="btn btn-danger" onClick={() => this.deleteFlashcardSetClicked(flashcardSets.id, flashcardSets.name)}>Delete</button></td>
-                                            <td><button className="btn btn-warning" onClick={() => this.updateFlashcardSetClicked(flashcardSets)}>Update</button></td>
-                                        </tr>
-                                )
-                            }
-                        </tbody>
-                    </table>
-                    <div className="row">
-                        <br />
-                        <button className="btn btn-info" onClick={this.addFlashcardSetClicked}>Add Flashcard Set</button>
-                    </div>
+        let {id, jobTitle, firstName, lastName, email} = this.state
+        return(
+            <div>
+                <div className="jumbotron" style={{backgroundColor: "gray"}}>
+                <h3 style={{textAlign: "center"}}>Update Employee</h3>
+                </div>
+                <div className="container">
+                    <Formik
+                        initialValues={{id, jobTitle, firstName, lastName, email}}
+                        onSubmit={this.onSubmit}
+                        enableReinitialize={true}
+                    >
+                        {
+                            (props) => (
+                                <Form>
+                                    <fieldset className="form-group">
+                                        <label>Id</label>
+                                        <Field className="form-contorl" type="text" name="id" disabled />
+                                    </fieldset>
+                                    <fieldset>
+                                        <label>Job Title</label>
+                                        <Field className="form-control" type="text" name="jobTitle" />
+                                    </fieldset>
+                                    <fieldset>
+                                        <label>First Name</label>
+                                        <Field className="form-control" type="text" name="firstName" />
+                                    </fieldset>
+                                    <fieldset>
+                                        <label>Last Name</label>
+                                        <Field className="form-control" type="text" name="lastName" />
+                                    </fieldset>
+                                    <fieldset>
+                                        <label>Email</label>
+                                        <Field className="form-control" type="text" name="email" />
+                                    </fieldset>
+                                    <button className="btn btn-success" type="submit">Save</button>
+                                </Form>
+                            )
+                        } 
+                    </Formik>
                 </div>
             </div>
         )
     }
 }
 
-export default FlashcardSetComponent;
+export default EmployeeComponent 
