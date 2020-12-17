@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-class UserDataService {
+class UsersDataService {
 
     retrieveAllUser() {
         return axios.get('http://localhost:8080/retrieveAllUsers')
@@ -27,4 +27,4 @@ class UserDataService {
     }
 }
 
-export default new UserDataService();
+export default new UsersDataService();

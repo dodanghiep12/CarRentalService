@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import HeaderComponent from '../headerFooter/HeaderComponent';
-import FooterComponent from '../headerFooter/FooterComponent';
-import HomeComponent from './HomeComponent';
-import SignInComponent from './SignInComponent';
-import CreateNewUserComponent from './CreateNewUserComponent';
-import FlashcardComponent from './FlashcardComponent';
-import FlashcardSetComponent from './FlashcardSetComponent';
+import HeaderComponent from '../headerandfooter/HeaderComponent';
+import FooterComponent from '../headerandfooter/FooterComponent';
+import HomeComponent from '../general/HomeComponent';
+import SignInComponent from '../signupandsignin/SignInComponent';
+import SignUpComponent from '../signupandsignin/SignUpComponent';
 
 
 class RouterComponent extends Component {
@@ -18,10 +16,10 @@ class RouterComponent extends Component {
                         <Switch>
                             <Route exact path="/"><HomeComponent /></Route>
                             <Route path="/SignIn"><SignInComponent /></Route>
-                            <Route path="/CreateNewUser/:id" component={CreateNewUserComponent} />
-                            <Route path="/FlashcardSets" component={FlashcardSetComponent} />
+                            <Route path="/CreateNewUser/:id" component={SignUpComponent} />
+                            {/* <Route path="/FlashcardSets" component={FlashcardSetComponent} />
                             <Route path="/cardSet" component={FlashcardComponent} />
-                            <Route path="/:username/:password/:userID/:flashcardsSetID" component={FlashcardComponent} />
+                            <Route path="/:username/:password/:userID/:flashcardsSetID" component={FlashcardComponent} /> */}
                         </Switch>
                     <FooterComponent />
                 </Router>

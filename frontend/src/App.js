@@ -1,6 +1,6 @@
 import './App.css';
 import './bootstrap.css';
-import RouterComponent from './components/Router/RouterComponent'
+import RouterComponent from './components/router/RouterComponent'
 
 function App() {
   return (
