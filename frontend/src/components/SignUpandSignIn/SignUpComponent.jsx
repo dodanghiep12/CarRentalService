@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field } from 'formik';
-import UserDataService from '../../services/UserDataService';
+import UsersDataService from '../../service/UsersDataService';
 
 
-class CreateNewUserComponent extends Component {
+class SignUpComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +22,7 @@ class CreateNewUserComponent extends Component {
             password: values.password
         }
 
-        UserDataService.createUser(user)
+        UsersDataService.createUser(user)
         .then(() => this.props.history.push('/SignIn'))
     }
 
@@ -72,4 +72,4 @@ class CreateNewUserComponent extends Component {
     }
 }
 
-export default CreateNewUserComponent;
+export default SignUpComponent;

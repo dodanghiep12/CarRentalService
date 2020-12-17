@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { Redirect } from "react-router-dom";
-import UserDataService from '../../services/UserDataService';
+import UsersDataService from '../../service/UsersDataService';
 import { Formik, Form, Field } from 'formik';
 class SignInComponent extends Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class SignInComponent extends Component {
             password: values.password
         }
 
-        UserDataService.retrieveAllUser()
+        UsersDataService.retrieveAllUser()
         .then(
             (response) => {
                 response.data.forEach((element) => {
