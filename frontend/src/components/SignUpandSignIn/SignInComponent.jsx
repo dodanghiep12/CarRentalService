@@ -45,7 +45,7 @@ class SignInComponent extends Component {
             
             return <Redirect
             to={{
-            pathname: "/FlashcardSets",
+            pathname: "/UserCarInfo",
             state: { id: this.state.id }
           }}
         />

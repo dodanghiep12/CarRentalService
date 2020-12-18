@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CarStockDataService from '../../service/CarStockDataService';
+import UserCarInfoDataService from '../../service/UserCarInfoDataService';
 
 class ListEmployeeComponent extends Component {
     constructor(props) {
@@ -30,6 +31,12 @@ class ListEmployeeComponent extends Component {
 
     deleteCarStockClicked(id, brand, color) {
         console.log('Delete Employee Clicked')
+        let usercarinfo = {
+            Brand: brand,
+            Color: color,
+            userID: id
+        }
+        UserCarInfoDataService.createUserCarInfo(usercarinfo)
         CarStockDataService.deleteCarStock(id)
         .then(
             response => {
