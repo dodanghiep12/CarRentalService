@@ -48,7 +48,7 @@ public class CarStockController {
 
     //This is a DELETE request to delete an existing set.
     //http://localhost:8080/deleteCarStock/1
-    @DeleteMapping("/deleteCarStock/{CarStocktId}")
+    @DeleteMapping("/deleteCarStock/{CarStockId}")
     public String deleteCarStock(@PathVariable int CarStockId) {
 
         //Creating a tempCarStock to check to see if it exists the in the DB

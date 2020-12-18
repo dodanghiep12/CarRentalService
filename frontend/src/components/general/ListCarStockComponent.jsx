@@ -5,80 +5,76 @@ class ListEmployeeComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            employees: []
+            carstocks: []
         }
-        this.refereshEmployeeRegistry = this.refereshEmployeeRegistry.bind(this)
-        this.deleteEmployeeClicked = this.deleteEmployeeClicked.bind(this)
-        this.upDateEmployeeClicked = this.upDateEmployeeClicked.bind(this)
-        this.addEmployeeClicked = this.addEmployeeClicked.bind(this)
+        this.refereshCarStock = this.refereshCarStock.bind(this)
+        this.deleteCarStockClicked = this.deleteCarStockClicked.bind(this)
+        this.upDateCarStockClicked = this.upDateCarStockClicked.bind(this)
+        this.addCarStockClicked = this.addCarStockClicked.bind(this)
     }
 
     componentDidMount() {
-        this.refereshEmployeeRegistry();
+        this.refereshCarStock();
     }
 
-    refereshEmployeeRegistry() {
-        CarStockDataService.retrieveAllEmployees()
+    refereshCarStock() {
+        CarStockDataService.retrieveAllCarStock()
         .then(
             response => {
                 this.setState({
-                    employees: response.data,
+                    carstocks: response.data,
                 })
             }
         )
     }
 
-    deleteEmployeeClicked(id, firstName, lastName) {
+    deleteCarStockClicked(id, brand, color) {
         console.log('Delete Employee Clicked')
-        CarStockDataService.deleteEmployee(id)
+        CarStockDataService.deleteCarStock(id)
         .then(
             response => {
-                this.setState({message: `Deleted Employee: ${firstName} ${lastName}`})
+                this.setState({message: `Deleted CarStock: ${brand} ${color}`})
                 alert(this.state.message)
-                this.refereshEmployeeRegistry(); 
+                this.refereshCarStock(); 
             }
         )
     }
     
-    upDateEmployeeClicked(id, jobTitle) {
-        console.log('Update Employee Clicked')
-        this.props.history.push(`/employee/${id}/${jobTitle}`)
+    upDateCarStockClicked(id, brand) {
+        console.log('Update CarStock Clicked')
+        this.props.history.push(`/carstock/${id}/${brand}`)
     }
 
-    addEmployeeClicked() {
-        console.log('Add Employee Clicked')
-        this.props.history.push(`/theEmployee/-1`)
+    addCarStockClicked() {
+        console.log('Add CarStock Clicked')
+        this.props.history.push(`/theCarStock/-1`)
     }
  
    render() {
        return(
            <div className="container">
-               <h1 style={{textAlign:"center"}}>Employee Registry</h1><br></br>
+               <h1 style={{textAlign:"center"}}>CarStock</h1><br></br>
                <div className="jumbotron"  style={{backgroundColor: "gray", color: "white"}}>
                    <table className="table">
                        <thead>
                            <tr style={{textAlign: "center" , color: "black"}}>
                                <th>Id</th>
-                               <th>Job Title</th>
-                               <th>First Name</th>
-                               <th>Last Name</th>
-                               <th>Email</th>
+                               <th>Brand</th>
+                               <th>Color</th>
                                <th>Delete</th>
                                <th>Update</th>
                            </tr>
                        </thead>
                        <tbody>
                            {
-                               this.state.employees.map (
-                                   employees => 
-                                   <tr style={{textAlign: "center"}} key={employees.id}>
-                                       <td>{employees.id}</td>
-                                       <td>{employees.jobTitle}</td>
-                                       <td>{employees.firstName}</td>
-                                       <td>{employees.lastName}</td>
-                                       <td>{employees.email}</td>
-                                       <td><button className="btn btn-warning" onClick={() => this.deleteEmployeeClicked(employees.id, employees.firstName, employees.lastName)}>Delete</button></td>
-                                       <td><button className="btn btn-success" onClick={() => this.upDateEmployeeClicked(employees.id, employees.jobTitle)}>Update</button></td>
+                               this.state.carstocks.map (
+                                   carstocks => 
+                                   <tr style={{textAlign: "center"}} key={carstocks.id}>
+                                       <td>{carstocks.id}</td>
+                                       <td>{carstocks.brand}</td>
+                                       <td>{carstocks.color}</td>
+                                       <td><button className="btn btn-warning" onClick={() => this.deleteCarStockClicked(carstocks.id, carstocks.brand, carstocks.color)}>Delete</button></td>
+                                       <td><button className="btn btn-success" onClick={() => this.upDateCarStockClicked(carstocks.id, carstocks.brand)}>Update</button></td>
                                    </tr>
                                )
                            }
@@ -86,7 +82,7 @@ class ListEmployeeComponent extends Component {
                    </table>
                    <div className="row">
                        <br/>
-                       <button className="btn btn-success" onClick={this.addEmployeeClicked}>Add Employee</button>
+                       <button className="btn btn-success" onClick={this.addCarStockClicked}>Add CarStock</button>
                    </div>
                </div>
            </div>

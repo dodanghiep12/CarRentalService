@@ -19,7 +19,9 @@ class SignUpComponent extends Component {
     onSubmit(values) {
         let user = {
             userName: values.userName,
-            password: values.password
+            password: values.password,
+            firstName: values.firstname,
+            lastName: values.lastname
         }
 
         UsersDataService.createUser(user)

@@ -15,6 +15,7 @@ class HeaderComponent extends Component {
                             <RiIcons.RiLoginBoxFill/> Sign In</Link></li>
                         <li><Link className="nav-link" to="/CreateNewUser/:id">
                             <FaIcons.FaUserPlus/> Create New User</Link></li>
+                        <li><Link className="nav-link" to="/CarStock">CarStock</Link></li>
                     </ul>
                 </nav>
             </header>

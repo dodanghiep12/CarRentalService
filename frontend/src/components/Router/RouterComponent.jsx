@@ -22,7 +22,7 @@ class RouterComponent extends Component {
                             <Route path="/CreateNewUser/:id" component={SignUpComponent} />
                             <Route path="/theCarStock/:id" component={CarStock} /> {/*Create */}
                             <Route path="/carstock/:id/:brand" component={CarStockComponent} /> {/*Update */}
-                            <Route path="/CarStockRegistry" exact component={ListCarStockComponent} />
+                            <Route path="/CarStock" exact component={ListCarStockComponent} />
                             {/* <Route path="/FlashcardSets" component={FlashcardSetComponent} />
                             <Route path="/cardSet" component={FlashcardComponent} />
                             <Route path="/:username/:password/:userID/:flashcardsSetID" component={FlashcardComponent} /> */}
