@@ -42,8 +42,8 @@ public class UserCarInfoController {
         result.setBrand(updateUserCarInfo.getBrand());
         result.setColor(updateUserCarInfo.getColor());
         //this will execute an update instead of a create
-        userCarInfoDAO.save(updateUserCarInfo);
-        return updateUserCarInfo;
+        userCarInfoDAO.save(result);
+        return result;
     }
 
     //This is a DELETE request to delete an existing set.

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import UserCarInfoDataService from '../../service/UserCarInfoDataService';
 import { Redirect } from "react-router-dom";
+import * as FaIcons from "react-icons/fa";
 
 class UserCarInfoComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            usercarinfos: [],
             id:this.props.location.state.id,
+            usercarinfos: [],
             updatedName:""
         }    
 
@@ -32,19 +33,9 @@ class UserCarInfoComponent extends Component {
 
 
     render() {
-        if(this.state.renderCards){
-                //return <Redirect to={"/FlashcardSets"} />                  
-                return <Redirect
-                to={{
-                pathname: "/cardSet",
-                state: { id: this.state.setID }
-              }}
-            />           
-
-        }
         return (
             <div className="container">
-                <h1 style={{ textAlign: "center" }}>UserCarInfo</h1><br></br>
+                <h1 style={{ textAlign: "center" }}>Cart <FaIcons.FaShoppingCart/></h1><br></br>
                 <div className="jumbotron" style={{ backgroundColor: "gray", color: "white" }}>
                     <table className="table">
                         <thead>
@@ -68,6 +59,10 @@ class UserCarInfoComponent extends Component {
                             }
                         </tbody>
                     </table>
+                    <div className="row">
+                        <br />
+                        <button className="btn btn-info" onClick={this.addFlashcardSetClicked}>Check Out</button>
+                    </div>
                 </div>
             </div>
         )

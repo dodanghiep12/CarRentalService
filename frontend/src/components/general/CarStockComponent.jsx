@@ -7,8 +7,10 @@ class CarStockComponent extends Component {
         super(props)
         this.state = {
             id: this.props.match.params.id,
+            image: this.props.match.params.image,
             brand: this.props.match.params.brand,
-            color: ''
+            color: this.props.match.params.color,
+            yearMade: this.props.match.params.yearMade
         }
         this.onSubmit = this.onSubmit.bind(this)
     }
@@ -16,8 +18,10 @@ class CarStockComponent extends Component {
     onSubmit(values) {
         let carstock = {
             id: this.state.id,
+            iamge: values.iamge,
             brand: values.brand,
-            color: values.color
+            color: values.color,
+            yearMade: values.yearMade
         }
 
             CarStockDataService.updateCarStock(carstock)
@@ -45,12 +49,20 @@ class CarStockComponent extends Component {
                                         <Field className="form-contorl" type="text" name="id" disabled />
                                     </fieldset>
                                     <fieldset>
+                                        <label>Image</label>
+                                        <Field className="form-control" type="text" name="image" />
+                                    </fieldset>
+                                    <fieldset>
                                         <label>Brand</label>
                                         <Field className="form-control" type="text" name="brand" />
                                     </fieldset>
                                     <fieldset>
                                         <label>Color</label>
                                         <Field className="form-control" type="text" name="color" />
+                                    </fieldset>
+                                    <fieldset>
+                                        <label>Year Made</label>
+                                        <Field className="form-control" type="text" name="yearMade" />
                                     </fieldset>
                                     <button className="btn btn-success" type="submit">Save</button>
                                 </Form>

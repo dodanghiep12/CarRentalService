@@ -30,7 +30,6 @@ class SignInComponent extends Component {
                             id: element.id,
                             redirect : true
                           });     
-
                     } 
 
                 });
@@ -45,8 +44,8 @@ class SignInComponent extends Component {
             
             return <Redirect
             to={{
-            pathname: "/UserCarInfo",
-            state: { id: this.state.id }
+            state: { id: this.state.id },
+            pathname: "/UserCarInfo"
           }}
         />
         }

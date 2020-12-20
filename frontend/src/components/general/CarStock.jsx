@@ -5,13 +5,17 @@ class CarStock extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            carstocks: [],
             id: this.props.match.params.id,
+            image: '',
             brand: '',
-            color: ''
+            color: '',
+            yearMade: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
+
 
     handleChange(event) {
         this.setState({
@@ -22,8 +26,10 @@ class CarStock extends Component {
     handleSubmit() {
         let carstock = {
             id: this.state.id,
+            brand: this.state.image,
             brand: this.state.brand,
-            color: this.state.color
+            color: this.state.color,
+            yearMade: this.state.yearMade
         }
         
         CarStockDataService.createCarStock(carstock)
@@ -43,12 +49,20 @@ class CarStock extends Component {
                             <input className="form-control" type="text" value={this.state.id} disabled></input>
                         </div>
                         <div>
+                            <lable>Image:</lable>
+                            <input className="form-control" type="text" name="image" onChange={this.handleChange}></input>
+                        </div>
+                        <div>
                             <lable>Brand:</lable>
                             <input className="form-control" type="text" name="brand" onChange={this.handleChange}></input>
                         </div>
                         <div>
                             <lable>Color:</lable>
                             <input className="form-control" type="text" name="color" onChange={this.handleChange}></input>
+                        </div>
+                        <div>
+                            <lable>Year Made:</lable>
+                            <input className="form-control" type="text" name="yearMade" onChange={this.handleChange}></input>
                         </div><br/><br/>
                         <button className="btn btn-success" type="submit">Submit</button><br/><br/>
                     </form>

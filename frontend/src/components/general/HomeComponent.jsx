@@ -5,8 +5,8 @@ class HomeComponent extends Component {
     render() {
         return (
             <div className="container">
-                    <p>A NEW WAY TO RENT</p>
-                    <p>Quality rental vehicles</p>
+                    <p className="hai">A NEW WAY TO RENT</p>
+                    <p className="hai">Quality rental vehicles</p>
                     <br/>
                     <button className="bt first">
                         <Link to="/SignIn">HERE</Link>

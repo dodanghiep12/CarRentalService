@@ -31,12 +31,6 @@ class ListEmployeeComponent extends Component {
 
     deleteCarStockClicked(id, brand, color) {
         console.log('Delete Employee Clicked')
-        let usercarinfo = {
-            Brand: brand,
-            Color: color,
-            userID: id
-        }
-        UserCarInfoDataService.createUserCarInfo(usercarinfo)
         CarStockDataService.deleteCarStock(id)
         .then(
             response => {
@@ -47,9 +41,9 @@ class ListEmployeeComponent extends Component {
         )
     }
     
-    upDateCarStockClicked(id, brand) {
+    upDateCarStockClicked(id, brand, color) {
         console.log('Update CarStock Clicked')
-        this.props.history.push(`/carstock/${id}/${brand}`)
+        this.props.history.push(`/carstock/${id}/${brand}/${color}`)
     }
 
     addCarStockClicked() {
@@ -59,38 +53,21 @@ class ListEmployeeComponent extends Component {
  
    render() {
        return(
-           <div className="container">
+           <div className="test">
                <h1 style={{textAlign:"center"}}>CarStock</h1><br></br>
-               <div className="jumbotron"  style={{backgroundColor: "gray", color: "white"}}>
-                   <table className="table">
-                       <thead>
-                           <tr style={{textAlign: "center" , color: "black"}}>
-                               <th>Id</th>
-                               <th>Brand</th>
-                               <th>Color</th>
-                               <th>Delete</th>
-                               <th>Update</th>
-                           </tr>
-                       </thead>
-                       <tbody>
+               <div className="contacts" >
                            {
                                this.state.carstocks.map (
                                    carstocks => 
-                                   <tr style={{textAlign: "center"}} key={carstocks.id}>
-                                       <td>{carstocks.id}</td>
-                                       <td>{carstocks.brand}</td>
-                                       <td>{carstocks.color}</td>
-                                       <td><button className="btn btn-warning" onClick={() => this.deleteCarStockClicked(carstocks.id, carstocks.brand, carstocks.color)}>Delete</button></td>
-                                       <td><button className="btn btn-success" onClick={() => this.upDateCarStockClicked(carstocks.id, carstocks.brand)}>Update</button></td>
-                                   </tr>
+                                   <div className="Carcontent" style={{textAlign: "center"}} key={carstocks.id}>
+                                       <img src={carstocks.image} alt="description" width="300" height="250"/>
+                                       <p>Brand: {carstocks.brand}</p>
+                                       <p>Color: {carstocks.color}</p>
+                                       <p>Year Made: {carstocks.yearMade}</p>
+                                       <button className="btn btn-warning" onClick={() => this.deleteCarStockClicked(carstocks.id, carstocks.brand, carstocks.color)}>Add to User</button>
+                                   </div>
                                )
                            }
-                       </tbody>
-                   </table>
-                   <div className="row">
-                       <br/>
-                       <button className="btn btn-success" onClick={this.addCarStockClicked}>Add CarStock</button>
-                   </div>
                </div>
            </div>
        )
