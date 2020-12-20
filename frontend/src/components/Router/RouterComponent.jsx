@@ -5,7 +5,10 @@ import FooterComponent from '../headerandfooter/FooterComponent';
 import HomeComponent from '../general/HomeComponent';
 import SignInComponent from '../signupandsignin/SignInComponent';
 import SignUpComponent from '../signupandsignin/SignUpComponent';
-
+import CarStock from '../general/CarStock';
+import CarStockComponent from '../general/CarStockComponent';
+import ListCarStockComponent from '../general/ListCarStockComponent';
+import UserCarInfoComponent from "../general/UserCarInfoComponent";
 
 class RouterComponent extends Component {
     render() {
@@ -17,6 +20,10 @@ class RouterComponent extends Component {
                             <Route exact path="/"><HomeComponent /></Route>
                             <Route path="/SignIn"><SignInComponent /></Route>
                             <Route path="/CreateNewUser/:id" component={SignUpComponent} />
+                            <Route path="/theCarStock/:id" component={CarStock} /> {/*Create */}
+                            <Route path="/carstock/:id/:brand/:color" component={CarStockComponent} /> {/*Update */}
+                            <Route path="/CarStock" exact component={ListCarStockComponent} />
+                            <Route path="/UserCarInfo" component={UserCarInfoComponent} />
                             {/* <Route path="/FlashcardSets" component={FlashcardSetComponent} />
                             <Route path="/cardSet" component={FlashcardComponent} />
                             <Route path="/:username/:password/:userID/:flashcardsSetID" component={FlashcardComponent} /> */}

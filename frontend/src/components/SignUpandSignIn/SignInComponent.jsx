@@ -30,7 +30,6 @@ class SignInComponent extends Component {
                             id: element.id,
                             redirect : true
                           });     
-
                     } 
 
                 });
@@ -45,8 +44,8 @@ class SignInComponent extends Component {
             
             return <Redirect
             to={{
-            pathname: "/FlashcardSets",
-            state: { id: this.state.id }
+            state: { id: this.state.id },
+            pathname: "/UserCarInfo"
           }}
         />
         }
@@ -58,7 +57,7 @@ class SignInComponent extends Component {
                 <div className="header">Sign In</div>
                 <div className="content">
                 <div className="image">
-                    <img src="https://images-na.ssl-images-amazon.com/images/I/61CfipGxS-L._AC_SL1001_.jpg" alt="new"/>
+                    <img src="https://icon-library.com/images/icon-login/icon-login-24.jpg" alt="new"/>
                 </div>                    
                     <Formik
                         initialValues={{userName, password}}

@@ -19,7 +19,9 @@ class SignUpComponent extends Component {
     onSubmit(values) {
         let user = {
             userName: values.userName,
-            password: values.password
+            password: values.password,
+            firstName: values.firstname,
+            lastName: values.lastname
         }
 
         UsersDataService.createUser(user)
@@ -34,7 +36,7 @@ class SignUpComponent extends Component {
                 <div className="header">Register</div>
                 <div className="content">
                 <div className="image">
-                    <img src="https://images-na.ssl-images-amazon.com/images/I/61CfipGxS-L._AC_SL1001_.jpg" alt="new"/>
+                    <img src="https://static.thenounproject.com/png/6478-200.png" alt="new"/>
                 </div>
                     
                     <Formik
@@ -56,6 +58,14 @@ class SignUpComponent extends Component {
                                     <fieldset className="form-group">
                                         <label>Password</label>
                                         <Field className="form-control" type="text" name="password" placeholder="password" />
+                                    </fieldset>
+                                    <fieldset className="form-group">
+                                        <label>Firstname</label>
+                                        <Field className="form-control" type="text" name="firstname" placeholder="firstname" />
+                                    </fieldset>
+                                    <fieldset className="form-group">
+                                        <label>Lastname</label>
+                                        <Field className="form-control" type="text" name="lastname" placeholder="lastname" />
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <button className="btn" type="submit">Register</button>

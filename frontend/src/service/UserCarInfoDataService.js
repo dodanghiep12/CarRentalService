@@ -2,19 +2,19 @@ import axios from 'axios';
 
 class UserCarInfoDataService {
 
-    retrieveAllFlashcardSets() {
+    retrieveAllUserCarInfos() {
         return axios.get(`http://localhost:8080/retrieveAllUserCarInfos`)
     }
 
-    deleteFlashcardSet(id) {
+    deleteUserCarInfo(id) {
         return axios.delete(`http://localhost:8080/deleteUserCarInfo/${id}`)
     }
 
-    updateFlashcardSet(userCarInfo) {
+    updateUserCarInfo(userCarInfo) {
         return axios.put(`http://localhost:8080/updateUserCarInfo`, userCarInfo)
     }
 
-    createFlashcardSet(userCarInfo) {
+    createUserCarInfo(userCarInfo) {
         return axios.post(`/http://localhost:8080/addUserCarInfo`, userCarInfo)
     }
 }

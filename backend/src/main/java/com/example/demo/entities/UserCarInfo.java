@@ -27,7 +27,7 @@ public class UserCarInfo {
     //Many to one -> A user can have many sets of flash cards
     //Lazy fetchType meaning initialization is deferred as long as possible.
     @ManyToOne(fetch = FetchType.LAZY,  optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)    // If a user is deleted, all sets belonging to them are also deleted.
+    @OnDelete(action = OnDeleteAction.CASCADE)    // If a user is deleted, all usercarinfos belonging to them are also deleted.
     @JoinColumn(name = "userID", nullable = false) // creates the column on which they join on, the foreign key. can't be null
     @JsonIgnore // ignore field when serializing
     private Users users;

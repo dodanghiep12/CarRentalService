@@ -11,17 +11,25 @@ public class CarStock {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "image")
+    private String image;
+
     @Column(name = "brand")
     private String brand;
 
     @Column(name = "color")
     private String color;
 
+    @Column(name = "year")
+    private String yearMade;
+
     public CarStock() {}
 
-    public CarStock(String brand, String color) {
+    public CarStock(String image, String brand, String color, String yearMade) {
+        this.image = image;
         this.brand = brand;
         this.color = color;
+        this.yearMade = yearMade;
     }
 
     public int getId() {
@@ -48,12 +56,30 @@ public class CarStock {
         this.color = color;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getYearMade() {
+        return yearMade;
+    }
+
+    public void setYearMade(String yearMade) {
+        this.yearMade = yearMade;
+    }
+
     @Override
     public String toString() {
         return "CarStock{" +
                 "id=" + id +
+                ", image='" + image + '\'' +
                 ", brand='" + brand + '\'' +
                 ", color='" + color + '\'' +
+                ", yearMade='" + yearMade + '\'' +
                 '}';
     }
 }
