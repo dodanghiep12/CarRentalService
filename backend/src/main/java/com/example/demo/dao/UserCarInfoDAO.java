@@ -8,6 +8,7 @@ import java.util.List;
 public interface UserCarInfoDAO {
     List<UserCarInfo> fetchAll();
     UserCarInfo fetchById(int theId);
+    Object fetchSum(int userID);
     void save(UserCarInfo userCarInfo);
     void deleteById(int theId);
 }

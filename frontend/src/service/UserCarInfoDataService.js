@@ -6,6 +6,10 @@ class UserCarInfoDataService {
         return axios.get(`http://localhost:8080/retrieveAllUserCarInfos`)
     }
 
+    retrieveSum(userID) {
+        return axios.get(`http://localhost:8080/retrieveprice/${userID}`)
+    }
+
     deleteUserCarInfo(id) {
         return axios.delete(`http://localhost:8080/deleteUserCarInfo/${id}`)
     }

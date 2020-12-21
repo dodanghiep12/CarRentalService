@@ -9,6 +9,7 @@ class UserCarInfoComponent extends Component {
         this.state = {
             id:this.props.location.state.id,
             usercarinfos: [],
+            sum: 0,
             updatedName:""
         }    
         this.continueShopping = this.continueShopping.bind(this)
@@ -28,14 +29,23 @@ class UserCarInfoComponent extends Component {
                     })
                 }
             )
+        UserCarInfoDataService.retrieveSum(this.state.id)
+            .then(
+                response => {
+                    this.setState({
+                        sum: response.data
+                    })
+                }
+            )
     }
+
 
     deleteUserCarInfoClicked(id, brand, color) {
         console.log("Delete Flashcard Set Clicked")
         UserCarInfoDataService.deleteUserCarInfo(id)
             .then(
                 response => {
-                    this.setState({ message: `Deleted Set: ${brand} ${color}` })
+                    this.setState({ message: `Deleted Car: ${brand} ${color}` })
                     alert(this.state.message)
                     this.refreshUserCarInfo();
                 }
@@ -56,10 +66,9 @@ class UserCarInfoComponent extends Component {
                     <table className="table">
                         <thead>
                             <tr style={{ textAlign: "center", color: "black" }}>
-                                <th>ID</th>
                                 <th>Brand</th>
                                 <th>Color</th>
-                                <th>UserID</th>
+                                <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,21 +76,21 @@ class UserCarInfoComponent extends Component {
                                 this.state.usercarinfos.filter(elements => elements.userID === this.state.id).map(
                                     usercarinfos =>
                                         <tr style={{ textAlign: "center" }} key={usercarinfos.id}>
-                                            <td>{usercarinfos.id}</td>
                                             <td>{usercarinfos.brand}</td>
                                             <td>{usercarinfos.color}</td>
-                                            <td>{usercarinfos.userID}</td>
+                                            <td>${usercarinfos.price}</td>
                                             <td><button className="btn btn-danger" onClick={() => this.deleteUserCarInfoClicked(usercarinfos.id, usercarinfos.brand, usercarinfos.color)}>Remove</button></td>
                                         </tr>
                                 )
                             }
                         </tbody>
                     </table>
+                    <button className="btn btn-success" style={{marginLeft: 100, marginBottom: 20}}>Total: ${this.state.sum}</button>
                     <div className="row">
                         <br />
-                        <button className="btn btn-info" style={{margin: 10}} onClick={this.addFlashcardSetClicked}>Check Out</button>
+                        <button className="btn btn-info" style={{marginLeft: 10}} onClick={this.addFlashcardSetClicked}>Check Out</button>
                         <br/>
-                       <button className="btn btn-dark" style={{margin: 10}}  onClick={() => this.continueShopping(this.state.id)}>Continue Shopping</button>
+                       <button className="btn btn-dark" style={{marginLeft: 10}}  onClick={() => this.continueShopping(this.state.id)}>Continue Shopping</button>
                     </div>
                 </div>
             </div>

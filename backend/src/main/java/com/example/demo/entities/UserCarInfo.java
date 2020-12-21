@@ -36,6 +36,9 @@ public class UserCarInfo {
     @Column(name = "userID", updatable = false, insertable = false)
     private int userID;
 
+    @Column(name = "price")
+    private int price;
+
     public int getId() {
         return id;
     }
@@ -74,6 +77,14 @@ public class UserCarInfo {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override
