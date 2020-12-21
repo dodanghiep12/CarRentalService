@@ -15,7 +15,7 @@ class UserCarInfoDataService {
     }
 
     createUserCarInfo(userCarInfo) {
-        return axios.post(`/http://localhost:8080/addUserCarInfo`, userCarInfo)
+        return axios.post(`http://localhost:8080/addUserCarInfo`, userCarInfo)
     }
 }
 

@@ -11,7 +11,8 @@ class UserCarInfoComponent extends Component {
             usercarinfos: [],
             updatedName:""
         }    
-
+        this.continueShopping = this.continueShopping.bind(this)
+        this.deleteUserCarInfoClicked = this.deleteUserCarInfoClicked.bind(this)
     }
 
     componentDidMount() {
@@ -29,7 +30,22 @@ class UserCarInfoComponent extends Component {
             )
     }
 
-    
+    deleteUserCarInfoClicked(id, brand, color) {
+        console.log("Delete Flashcard Set Clicked")
+        UserCarInfoDataService.deleteUserCarInfo(id)
+            .then(
+                response => {
+                    this.setState({ message: `Deleted Set: ${brand} ${color}` })
+                    alert(this.state.message)
+                    this.refreshUserCarInfo();
+                }
+            )
+    }
+
+
+    continueShopping(userID) {
+        this.props.history.push(`/CarStock/${userID}`)
+    }
 
 
     render() {
@@ -43,7 +59,7 @@ class UserCarInfoComponent extends Component {
                                 <th>ID</th>
                                 <th>Brand</th>
                                 <th>Color</th>
-
+                                <th>UserID</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,6 +70,8 @@ class UserCarInfoComponent extends Component {
                                             <td>{usercarinfos.id}</td>
                                             <td>{usercarinfos.brand}</td>
                                             <td>{usercarinfos.color}</td>
+                                            <td>{usercarinfos.userID}</td>
+                                            <td><button className="btn btn-danger" onClick={() => this.deleteUserCarInfoClicked(usercarinfos.id, usercarinfos.brand, usercarinfos.color)}>Remove</button></td>
                                         </tr>
                                 )
                             }
@@ -61,7 +79,9 @@ class UserCarInfoComponent extends Component {
                     </table>
                     <div className="row">
                         <br />
-                        <button className="btn btn-info" onClick={this.addFlashcardSetClicked}>Check Out</button>
+                        <button className="btn btn-info" style={{margin: 10}} onClick={this.addFlashcardSetClicked}>Check Out</button>
+                        <br/>
+                       <button className="btn btn-dark" style={{margin: 10}}  onClick={() => this.continueShopping(this.state.id)}>Continue Shopping</button>
                     </div>
                 </div>
             </div>

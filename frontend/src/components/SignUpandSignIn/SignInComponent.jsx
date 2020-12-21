@@ -31,7 +31,6 @@ class SignInComponent extends Component {
                             redirect : true
                           });     
                     } 
-
                 });
             }
         )        
