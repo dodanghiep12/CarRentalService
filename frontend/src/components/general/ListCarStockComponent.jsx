@@ -6,6 +6,7 @@ class ListEmployeeComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: this.props.match.params.userID,
             carstocks: []
         }
         this.refereshCarStock = this.refereshCarStock.bind(this)
@@ -29,14 +30,26 @@ class ListEmployeeComponent extends Component {
         )
     }
 
-    deleteCarStockClicked(id, brand, color) {
+    deleteCarStockClicked(brand, color) {
         console.log('Delete Employee Clicked')
-        CarStockDataService.deleteCarStock(id)
+        // CarStockDataService.deleteCarStock(id)
+        // .then(
+        //     response => {
+        //         this.setState({message: `Deleted CarStock: ${brand} ${color}`})
+        //         alert(this.state.message)
+        //         this.refereshCarStock(); 
+        //     }
+        // )
+        let usercarinfo = {
+            brand: brand,
+            color: color,
+            userID: this.state.id
+        }
+        UserCarInfoDataService.createUserCarInfo(usercarinfo)
         .then(
             response => {
-                this.setState({message: `Deleted CarStock: ${brand} ${color}`})
+                this.setState({ message: `Added to Cart: ${brand} ${color}` })
                 alert(this.state.message)
-                this.refereshCarStock(); 
             }
         )
     }
@@ -64,7 +77,7 @@ class ListEmployeeComponent extends Component {
                                        <p>Brand: {carstocks.brand}</p>
                                        <p>Color: {carstocks.color}</p>
                                        <p>Year Made: {carstocks.yearMade}</p>
-                                       <button className="btn btn-warning" onClick={() => this.deleteCarStockClicked(carstocks.id, carstocks.brand, carstocks.color)}>Add to User</button>
+                                       <button className="btn btn-warning" onClick={() => this.deleteCarStockClicked(carstocks.brand, carstocks.color)}>Add to User</button>
                                    </div>
                                )
                            }
