@@ -38,6 +38,15 @@ public class UserCarInfoIMPL implements  UserCarInfoDAO {
 
     @Override
     @Transactional
+    public Object fetchSum(int userID) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        Query myQuery = currentSession.createQuery("select sum(price) from UserCarInfo where :userid like userID");
+        myQuery.setParameter("userid", userID);
+        return myQuery.getResultList().get(0);
+    }
+
+    @Override
+    @Transactional
     public void save(UserCarInfo userCarInfo) {
         Session currentSession = entityManager.unwrap(Session.class);
         UserCarInfo temp = userCarInfo;

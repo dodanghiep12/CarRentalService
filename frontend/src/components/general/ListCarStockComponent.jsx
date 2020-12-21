@@ -30,7 +30,7 @@ class ListEmployeeComponent extends Component {
         )
     }
 
-    deleteCarStockClicked(brand, color) {
+    deleteCarStockClicked(brand, color, price) {
         console.log('Delete Employee Clicked')
         // CarStockDataService.deleteCarStock(id)
         // .then(
@@ -43,12 +43,13 @@ class ListEmployeeComponent extends Component {
         let usercarinfo = {
             brand: brand,
             color: color,
-            userID: this.state.id
+            userID: this.state.id,
+            price: price
         }
         UserCarInfoDataService.createUserCarInfo(usercarinfo)
         .then(
             response => {
-                this.setState({ message: `Added to Cart: ${brand} ${color}` })
+                this.setState({ message: `Added to Cart: ${brand} ${color} ${price}` })
                 alert(this.state.message)
             }
         )
@@ -77,7 +78,8 @@ class ListEmployeeComponent extends Component {
                                        <p>Brand: {carstocks.brand}</p>
                                        <p>Color: {carstocks.color}</p>
                                        <p>Year Made: {carstocks.yearMade}</p>
-                                       <button className="btn btn-warning" onClick={() => this.deleteCarStockClicked(carstocks.brand, carstocks.color)}>Add to User</button>
+                                       <p>Price: ${carstocks.price}</p>
+                                       <button className="btn btn-warning" onClick={() => this.deleteCarStockClicked(carstocks.brand, carstocks.color, carstocks.price)}>Add to Cart</button>
                                    </div>
                                )
                            }

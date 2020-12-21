@@ -26,6 +26,12 @@ public class UserCarInfoController {
         return userCarInfoDAO.fetchAll();
     }
 
+    //http://localhost:8080/retrieveprice
+    @GetMapping("/retrieveprice/{userID}")
+    public Object sum(@PathVariable int userID) {
+        return userCarInfoDAO.fetchSum(userID);
+    }
+
     //This is a POST request to add a new UserCarInfo.
     //http://localhost:8080/addUserCarInfo
     @PostMapping("/addUserCarInfo")

@@ -23,13 +23,17 @@ public class CarStock {
     @Column(name = "year")
     private String yearMade;
 
+    @Column(name = "price")
+    private int price;
+
     public CarStock() {}
 
-    public CarStock(String image, String brand, String color, String yearMade) {
+    public CarStock(String image, String brand, String color, String yearMade, int price) {
         this.image = image;
         this.brand = brand;
         this.color = color;
         this.yearMade = yearMade;
+        this.price = price;
     }
 
     public int getId() {
@@ -70,6 +74,14 @@ public class CarStock {
 
     public void setYearMade(String yearMade) {
         this.yearMade = yearMade;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override
